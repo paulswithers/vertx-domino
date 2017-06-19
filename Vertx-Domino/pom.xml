@@ -9,6 +9,7 @@
 
 	<properties>
 		<vertx-version>3.4.1</vertx-version>
+		<junit-version>4.12</junit-version>
 		<!-- the main class -->
 		<exec.mainClass>com.paulwithers.vertx.BasicCoreDominoDemo</exec.mainClass>
 	</properties>
@@ -20,6 +21,26 @@
 			<artifactId>vertx-core</artifactId>
 			<version>${vertx-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-unit</artifactId>
+			<version>${vertx-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Required for Mmaven build outside Eclipse Runtime -->
+		<dependency>
+			<groupId>domino.lotus</groupId>
+			<artifactId>notes</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${LD_LIBRARY_PATH}/jvm/lib/ext/Notes.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -30,9 +51,10 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

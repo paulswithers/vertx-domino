@@ -2,6 +2,7 @@ package com.paulwithers.vertx;
 
 import java.io.IOException;
 
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerOptions;
@@ -11,7 +12,7 @@ import lotus.domino.NotesFactory;
 import lotus.domino.NotesThread;
 import lotus.domino.Session;
 
-public class BasicDominoDemo {
+public class BasicDominoDemo extends AbstractVerticle {
 
 	public static void main(String[] args) throws IOException {
 		new BasicDominoDemo();
@@ -33,6 +34,7 @@ public class BasicDominoDemo {
 		vertx.createHttpServer(options).requestHandler(new Handler<HttpServerRequest>() {
 
 
+			@Override
 			public void handle(HttpServerRequest req) {
 				HttpServerResponse resp = req.response();
 				resp.headers().set("Content-Type", "text/plain charset=UTF-8");
@@ -40,7 +42,7 @@ public class BasicDominoDemo {
 				try {
 					NotesThread.sinitThread();
 					Session s = NotesFactory.createSession();
-					sb.append(s.getUserName());
+					sb.append("Hello " + s.getUserName());
 					NotesThread.stermThread();
 				} catch (Exception e) {
 					e.printStackTrace();
