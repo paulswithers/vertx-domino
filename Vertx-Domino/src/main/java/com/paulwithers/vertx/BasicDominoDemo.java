@@ -44,7 +44,7 @@ public class BasicDominoDemo extends AbstractVerticle {
 					NotesThread.sinitThread();
 					Session s = NotesFactory.createSession();
 					Database db = s.getDatabase(s.getServerName(), "names.nsf");
-					sb.append("Hello " + s.getUserName() + " on " + s.getServerName());
+					sb.append("Hello " + s.getEffectiveUserName() + " on " + s.getServerName());
 					sb.append(
 							"First user is " + db.getView("$Users").getFirstDocument().getItemValueString("FullName"));
 					NotesThread.stermThread();
