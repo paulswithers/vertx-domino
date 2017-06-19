@@ -29,9 +29,10 @@ public class BasicTest {
 		// We create deployment options and set the _configuration_ json object:
 		ServerSocket socket = new ServerSocket(0);
 		port = socket.getLocalPort();
+		System.out.println("Port is " + port);
 		socket.close();
 
-		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", port));
+		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", 8111));
 
 		vertx.deployVerticle(BasicDominoDemo.class.getName(), options, context.asyncAssertSuccess());
 	}
@@ -45,7 +46,7 @@ public class BasicTest {
 	public void testMyApplication(TestContext context) {
 		final Async async = context.async();
 
-		vertx.createHttpClient().getNow(port, "localhost", "/", response -> {
+		vertx.createHttpClient().getNow(8111, "localhost", "/", response -> {
 			response.handler(body -> {
 				context.assertTrue(body.toString().contains("Intec"));
 				async.complete();

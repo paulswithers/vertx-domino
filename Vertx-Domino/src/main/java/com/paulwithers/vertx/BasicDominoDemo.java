@@ -8,6 +8,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
+import lotus.domino.Database;
 import lotus.domino.NotesFactory;
 import lotus.domino.NotesThread;
 import lotus.domino.Session;
@@ -25,7 +26,7 @@ public class BasicDominoDemo extends AbstractVerticle {
 		System.exit(0);
 	}
 
-	private static final int listenport = 8111;
+	private static final int listenport = 8112;
 
 	public BasicDominoDemo() {
 		Vertx vertx = Vertx.factory.vertx();
@@ -42,7 +43,10 @@ public class BasicDominoDemo extends AbstractVerticle {
 				try {
 					NotesThread.sinitThread();
 					Session s = NotesFactory.createSession();
-					sb.append("Hello " + s.getUserName());
+					Database db = s.getDatabase(s.getServerName(), "names.nsf");
+					sb.append("Hello " + s.getUserName() + " on " + s.getServerName());
+					sb.append(
+							"First user is " + db.getView("$Users").getFirstDocument().getItemValueString("FullName"));
 					NotesThread.stermThread();
 				} catch (Exception e) {
 					e.printStackTrace();
