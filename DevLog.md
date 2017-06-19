@@ -5,8 +5,10 @@
 ## Basic Notes Verticle
 
 ### pom.xml
-- Added ODA repo
 - Added vertx-core dependency
+- Added junit and vertx-unit dependencies
+- Added dependency to Notes.jar for external Maven builds
+- Added maven-shade plugin to create fat jar
 
 ### Classpath
 Added notes.jar from \domino\jvm\lib\ext
@@ -19,3 +21,19 @@ Use `vertx stop domino` to end it.
 Can also be run from command line via `java -cp "C:\Program Files\IBM\Domino\jvm\lib\ext\Notes.jar";target\vertx-domino-0.0.1-SNAPSHOT-fat.jar com.paulwithers.vertx.BasicDominoDemo`.
 
 Running the jars doesn't get classpath correctly, so you need to use `-cp` to specify the classpath. `java -jar` overrides the `cp` switch - a known Java gotcha.
+
+## Basic ODA Verticle
+
+### pom.xml
+- Added ODA repo
+- Added ODA dependency and oda-version property
+
+I kept getting ClassNotFoundErrors with org.openntf.formula (this has org.openntf.service package). So that's added explicitly.
+
+## classpath
+- Added lwpd.domino.napi.jar (for creating sessions)
+- Added lwpd.commons.jar (used by napi)
+- Added com.ibm.icu.base (added for DateFormat stuff etc)
+
+## src/main/java
+- Added org.openntf.service classes - could not get it to load these from org.openntf.formula jar

@@ -7,9 +7,17 @@
 	<name>Vertx Domino Test</name>
 	<description>Testbed for Vertx</description>
 
+	<repositories>
+		<repository>
+			<id>org.openntf.domino</id>
+			<url>https://artifactory.openntf.org/openntf/</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<vertx-version>3.4.1</vertx-version>
 		<junit-version>4.12</junit-version>
+		<oda-version>4.0.0-SNAPSHOT</oda-version>
 		<!-- the main class -->
 		<exec.mainClass>com.paulwithers.vertx.BasicCoreDominoDemo</exec.mainClass>
 	</properties>
@@ -32,6 +40,11 @@
 			<artifactId>vertx-unit</artifactId>
 			<version>${vertx-version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openntf.domino</groupId>
+			<artifactId>org.openntf.domino</artifactId>
+			<version>${oda-version}</version>
 		</dependency>
 		<!-- Required for Mmaven build outside Eclipse Runtime -->
 		<dependency>
