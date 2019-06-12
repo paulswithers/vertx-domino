@@ -32,7 +32,7 @@ public class BasicTest {
 		System.out.println("Port is " + port);
 		socket.close();
 
-		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", 8111));
+		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", 8119));
 
 		vertx.deployVerticle(BasicDominoDemo.class.getName(), options, context.asyncAssertSuccess());
 	}
@@ -46,7 +46,7 @@ public class BasicTest {
 	public void testMyApplication(TestContext context) {
 		final Async async = context.async();
 
-		vertx.createHttpClient().getNow(8111, "localhost", "/", response -> {
+		vertx.createHttpClient().getNow(8119, "localhost", "/", response -> {
 			response.handler(body -> {
 				context.assertTrue(body.toString().contains("Intec"));
 				async.complete();

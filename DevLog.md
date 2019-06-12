@@ -22,6 +22,8 @@ Can also be run from command line via `java -cp "C:\Program Files\IBM\Domino\jvm
 
 Running the jars doesn't get classpath correctly, so you need to use `-cp` to specify the classpath. `java -jar` overrides the `cp` switch - a known Java gotcha.
 
+ADDING EXTERNAL JARS WITHOUT LITERAL PATHS - SEE https://groups.google.com/forum/#!topic/vertx/YN6E7jxmNwU
+
 ## Basic ODA Verticle
 
 ### pom.xml
@@ -37,3 +39,17 @@ I kept getting ClassNotFoundErrors with org.openntf.formula (this has org.opennt
 
 ## src/main/java
 - Added org.openntf.service classes - could not get it to load these from org.openntf.formula jar
+
+Trying to run with Notes:
+For some reason today, setting JRE System Library to XPages Notes JRE, it runs successfully from Eclipse.
+
+Stephan's instructions say to add this to command line:
+-Dnotes.binary="C:\Program Files (x86)\IBM\Notes" -Duser.dir="C:\Program Files (x86)\IBM\Notes\data" -Djava.library.path="C:\Program Files (x86)\IBM\Notes"
+
+Still getting an error getting names.nsf (not opened yet). Could this be because Notes / Domino is running?? I've had similar issues with accessing Domino / Notes.
+
+## Swagger and Vertx
+Need to run Swagger from unit tests  
+http://vertx.io/blog/contract-driven-rest-services-with-vert-x3/  
+https://github.com/RobWin/assertj-swagger  
+https://bitbucket.org/atlassian/swagger-request-validator

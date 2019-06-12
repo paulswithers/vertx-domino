@@ -19,7 +19,7 @@
 		<junit-version>4.12</junit-version>
 		<oda-version>4.0.0-SNAPSHOT</oda-version>
 		<!-- the main class -->
-		<exec.mainClass>com.paulwithers.vertx.BasicCoreDominoDemo</exec.mainClass>
+		<exec.mainClass>com.paulwithers.vertx.BasicDominoDemo</exec.mainClass>
 	</properties>
 
 	<dependencies>

@@ -27,6 +27,11 @@ public class BasicOdaDemo extends AbstractVerticle {
 
 	public static void main(String[] args) throws IOException {
 		XWorldsManager.getInstance().Startup();
+		// 11-07-17 SHOULD THIS BE IN A WORKER VERTICLE, IN THE start() METHOD? TRIGGERED VIA vertx.deployVerticle()??
+		// See
+		// https://github.com/vert-x3/vertx-examples/blob/master/core-examples/src/main/java/io/vertx/example/core/verticle/worker/MainVerticle.java
+		// and
+		// https://github.com/vert-x3/vertx-examples/blob/master/core-examples/src/main/java/io/vertx/example/core/verticle/worker/WorkerVerticle.java
 		DominoExecutor de = new DominoExecutor(10);
 		new BasicOdaDemo(de);
 		int quit = 0;
